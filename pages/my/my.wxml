@@ -1,0 +1,29 @@
+<view class="container">
+	<image src="/assets/images/my/my@bg.png" class="bg-img" />
+	<z-button open-type="getUserInfo" class="avatar-position" bind:getUserInfo="getUserInfo" wx:if="{{!authorized}}">
+		<image src="/assets/images/my/my.png" slot="img" class="avatar" />
+	</z-button>
+	<view class="avatar-container avatar-position" wx:if="{{authorized}}">
+		<image class="avatar" src="{{userInfo.avatarUrl}}" />
+		<text>{{userInfo.nickName}}</text>
+	</view>
+	<view class="about-container">
+		<view class="about-us">
+			<image src="/assets/images/my/about.png" />
+			<text class="description">关于我们</text>
+		</view>
+		<view class="about-us">
+			<text>{{bookCount}}</text>
+			<text class="description">喜欢的书</text>
+		</view>
+	</view>
+
+	<view class="like-container">
+		<image src="/assets/images/my/like.png" class="headline" />
+		<view class="preview-container">
+			<block wx:for="{{classic}}" wx:key="index">
+				<z-preview classic="{{item}}" class="preview" />
+			</block>
+		</view>
+	</view>
+</view>

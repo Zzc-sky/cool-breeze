@@ -1,0 +1,6 @@
+<view class="container">
+	<image class="classic-img" src="{{img}}" />
+	<image class="player-img" src="{{playing?noPlay:yesPlay}}" bindtap="onPlay" />
+	<image class="tag" src="/assets/images/music/music@tag.png" />
+	<text class="content">{{content}}</text>
+</view>

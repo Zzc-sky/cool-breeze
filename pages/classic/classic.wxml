@@ -1,0 +1,15 @@
+<view class="container">
+	<view class="header">
+		<z-episode class="episode" index="{{classic.index}}" />
+		<view class="like-container">
+			<z-like class="like" like="{{likeStatus}}" count="{{likeCount}}" bind:like="onLike" />
+			<z-button class="share-btn" open-type="share">
+				<image src="/assets/images/share/share.png" slot="img" class="share" />
+			</z-button>
+		</view>
+	</view>
+	<z-movie hidden="{{classic.type!=100}}" img="{{classic.image}}" content="{{classic.content}}" />
+	<z-music wx:if="{{classic.type==200}}" img="{{classic.image}}" content="{{classic.content}}" src="{{classic.url}}" title="{{classic.title}}" />
+	<z-verse hidden="{{classic.type!=300}}" img="{{classic.image}}" content="{{classic.content}}" />
+	<z-nav title="{{classic.title}}" class="nav" first="{{first}}" latest="{{latest}}" bind:left="onLeft" bind:right="onRight" />
+</view>

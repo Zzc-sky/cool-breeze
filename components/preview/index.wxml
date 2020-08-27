@@ -1,0 +1,8 @@
+<view class="container" catch:tap="onTap">
+	<view class="head">
+		<z-tag text="{{typeText}}" tag-class="tag" />
+		<z-like count="{{classic.fav_nums}}" like="{{true}}" class="like" />
+	</view>
+	<image class="{{classic.type==200?'music-img':'other-img'}}" src="{{classic.image}}" />
+	<view class="text">{{classic.content}}</view>
+</view>

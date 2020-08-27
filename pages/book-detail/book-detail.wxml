@@ -1,0 +1,88 @@
+<view class="container">
+	<view class="header">
+		<image src="{{bookDetail.image}}" />
+		<text class="title">{{bookDetail.title}}</text>
+		<text class="author">{{bookDetail.author}}</text>
+	</view>
+	<!-- 短评 -->
+	<view class="sub-container">
+		<text class="handline">短评</text>
+		<text class="shadow" wx:if="{{comment==false}}">还没有短评</text>
+		<view class="comment-container">
+			<block wx:for="{{util.limit(comment,6)}}" wx:key="content">
+				<z-tag text="{{item.content}}" tag-class="{{tool.highLight(index)}}">
+					<text slot="after" class="num">+{{item.nums}}</text>
+				</z-tag>
+			</block>
+		</view>
+	</view>
+	<!-- 内容简介 -->
+	<view class="sub-container">
+		<text class="handline">内容简介</text>
+		<text class="content" decode="true">{{util.format(bookDetail.summary)}}</text>
+	</view>
+	<!-- 书本信息 -->
+	<view class="sub-container">
+		<text class="headline">书本信息</text>
+		<view class="detail-container">
+			<view class="left-detail">
+				<text>出版社</text>
+				<text>出版年</text>
+				<text>页数</text>
+				<text>定价</text>
+				<text>装帧</text>
+			</view>
+			<view class="right-detail">
+				<text>{{bookDetail.publisher}}</text>
+				<text>{{bookDetail.pubdate}}</text>
+				<text>{{bookDetail.pages}}</text>
+				<text>{{bookDetail.price}}</text>
+				<text>{{bookDetail.binding}}</text>
+			</view>
+		</view>
+	</view>
+</view>
+<!-- 短评功能 -->
+<view class="post-container" wx:if="{{!showPost}}">
+	<view class="post-fake" bindtap="onFakePost">
+		<text>留下你的短评~</text>
+	</view>
+	<view class="like-container">
+		<z-like class="like" like="{{bookState}}" count="{{bookCount}}" bind:like="onLike" />
+	</view>
+</view>
+<!-- 真的评论输入框 -->
+<view class="posting-container" wx:if="{{showPost}}">
+	<view class="post-header">
+		<text wx:if="{{comment.length}}">仅可点击标签+1</text>
+        <text wx:else>暂无评论</text>
+		<text class="cancel" bindtap="onCancel">取消</text>
+	</view>
+	<view class="comment-container">
+		<block wx:for="{{util.limit(comment,3)}}" wx:key="nums">
+			<z-tag tag-class="{{tool.highLight(index)}}" bind:tapping="onPost" text="{{item.content}}">
+				<text slot="after" class="num">+{{item.nums}}</text>
+			</z-tag>
+		</block>
+	</view>
+	<input class="post" placeholder="短评最多12个字" maxlength="12" bindconfirm="onPost"></input>
+</view>
+<!-- 遮罩层 -->
+<z-mask wx:if="{{showPost}}" />
+
+
+<wxs src="../../utils/filter.wxs" module="util" />
+<wxs module="tool">
+    var highLight = function(index) {
+        if(index==0){
+            return 'ex-tag1'
+        }else if(index==1){
+            return 'ex-tag2'
+        }else{
+            return ''
+        }
+    }
+    module.exports = {
+        highLight:highLight
+    }
+</wxs>

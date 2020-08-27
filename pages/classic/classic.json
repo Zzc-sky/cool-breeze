@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "z-like": "/components/like/like",
+    "z-movie": "/components/classic/movie/index",
+    "z-music": "/components/classic/music/index",
+    "z-verse": "/components/classic/verse/index",
+    "z-episode": "/components/episode/index",
+    "z-nav": "/components/nav/index",
+    "z-button": "/components/img-button/index"
+  }
+}
